@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BankingApplication{
@@ -43,6 +44,7 @@ public class BankingApplication{
                     System.out.println("\t[7]. Exit");
                     System.out.println("\tEnter an option to continue");
                     int option = scanner.nextInt();
+                    scanner.nextLine();
 
                     switch(option){
                         case 1: screen = OPEN_ACCOUNT; break;
@@ -57,18 +59,20 @@ public class BankingApplication{
                     break;
 
                 case OPEN_ACCOUNT:
-                    String id;
+                    String accountNumber;
                     String name;
                     double diposit;
                     boolean valid;
 
-                    System.out.printf(id="Account ID: SDB-%05d \n", (accounts.length + 1));
+                    accountNumber = String.format("SDB-%05d",(accounts.length + 1));
+
+                    System.out.printf("Account ID: %s \n", (accountNumber));
 
                     do{
                         valid = true;
                         System.out.println("Enter Account Holder's name :");
                         name = scanner.nextLine().strip();
-                        scanner.nextLine();
+                    
                     
                         if(name.isBlank()){
                             System.out.printf("%sName can't be empty%s\n", COLOR_RED_BOLD, RESET);
@@ -83,24 +87,30 @@ public class BankingApplication{
                                 }
                             }
                         
+                        
 
 
-            }while(!valid);
+                    }while(!valid);
 
-            do{
+                    do{
                         valid = true;
-                        System.out.print("Enter the initial diposit ammount :");
+                        System.out.print("Enter the initial diposit ammount (Rs.) :");
                         diposit = scanner.nextDouble();
+                        scanner.nextLine();
 
                         if( diposit < 5000.00){
-                            System.out.printf("\t%sInsufficiant Amount%s\n", COLOR_RED_BOLD, RESET);
+                            System.out.printf("%sInsufficiant Amount%s\n", COLOR_RED_BOLD, RESET);
+                            valid=false;
+                        
                         }
 
                     }while(!valid);
+                    
 
                     String[] newAccounts = new String[accounts.length+1];
                     String[] newCustomerNames = new String[customerNames.length+1];
                     double[] newBalance = new double[balance.length+1];
+
                     for(int i=0; i<accounts.length;i++){
                         newAccounts[i] = accounts[i];
                         newCustomerNames[i] = customerNames[i];
@@ -108,7 +118,7 @@ public class BankingApplication{
 
                     }
 
-                    newAccounts[newAccounts.length - 1] = id;
+                    newAccounts[newAccounts.length - 1] = accountNumber;
                     newCustomerNames[newCustomerNames.length-1] = name;
                     newBalance[newBalance.length-1] = diposit;
 
@@ -122,8 +132,8 @@ public class BankingApplication{
                     if(scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                     screen = DASHBOARD;
                     break;
-            }
-            case DEPOSIT_MONEY:
+
+                }
             
 
 
