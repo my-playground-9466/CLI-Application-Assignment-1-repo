@@ -81,13 +81,11 @@ public class BankingApplication{
                         }
                             for (int i = 0; i < name.length(); i++) {
                                 if (!(Character.isLetter(name.charAt(i)) || Character.isSpaceChar(name.charAt(i))) ) {
-                                    System.out.printf("\t%sInvalid Name%s\n", COLOR_RED_BOLD, RESET);
+                                    System.out.printf("%sInvalid Name%s\n", COLOR_RED_BOLD, RESET);
                                     valid = false;
                                     break;
                                 }
-                            }
-                        
-                        
+                            }   
 
 
                     }while(!valid);
@@ -103,6 +101,7 @@ public class BankingApplication{
                             valid=false;
                         
                         }
+                        
 
                     }while(!valid);
                     
@@ -128,12 +127,18 @@ public class BankingApplication{
                     System.out.println();
 
                     System.out.println("Account has been created successfully.");
-                    System.out.println("\tDo you want to continue adding (Y/n)? ");
+                    System.out.println("Do you want to continue adding (Y/n)? ");
                     if(scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                     screen = DASHBOARD;
                     break;
 
+                
+
+
                 }
+
+               
+
             
 
 
